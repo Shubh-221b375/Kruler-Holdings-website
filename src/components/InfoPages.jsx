@@ -1,4 +1,7 @@
 import React from 'react';
+import MarqueeText from './MarqueeText';
+import ImageCarousel from './ImageCarousel';
+import { ArrowIcon } from './Header';
 
 const PageHero = ({ title, subtitle, label }) => (
   <section className="property-detail-hero">
@@ -10,9 +13,6 @@ const PageHero = ({ title, subtitle, label }) => (
     </div>
   </section>
 );
-
-import MarqueeText from './MarqueeText';
-import ImageCarousel from './ImageCarousel';
 
 export function About() {
   return (
@@ -175,53 +175,142 @@ export function Services() {
 
 export function Contact() {
   return (
-    <div className="property-detail-page">
-      <section className="about-hero" style={{ height: '60vh' }}>
+    <div className="property-detail-page contact-page">
+      <section className="about-hero contact-hero">
         <div className="about-hero-video">
-          <img src="/media/EL WHERE HOTEL LOGO/DUC_6452.jpg" alt="Contact" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div className="video-overlay" style={{ background: 'rgba(0,0,0,0.7)' }} />
+          <img
+            src="/media/Lmak Office/lobby.jpg"
+            alt=""
+            className="contact-hero-img"
+          />
+          <div className="video-overlay contact-hero-overlay" />
         </div>
         <div className="container about-hero-content">
           <p className="section-label">CONNECT</p>
-          <h1 className="about-title">Get In <br /><span>Touch</span></h1>
-          <p className="about-subtitle">Inquiries regarding investment, partnership, or property management.</p>
+          <h1 className="about-title">
+            Let&apos;s <br />
+            <span>Begin</span>
+          </h1>
+          <p className="about-subtitle">
+            Investment, partnerships, leasing, and bespoke property enquiries—our team responds to every conversation with discretion and intent.
+          </p>
         </div>
       </section>
 
-      <section className="about-story" style={{ background: 'var(--bg-dark)' }}>
+      <MarqueeText
+        text="KRULER · HO CHI MINH · DISTRICT 1"
+        speed={1.35}
+        direction={1}
+        color="rgba(255,255,255,0.06)"
+      />
+
+      <section className="contact-intro">
         <div className="container">
-          <div className="story-grid">
-            <div className="story-content">
-              <h2 className="story-heading">Private Consultations</h2>
-              <p>Our team is available for private consultations and site tours. For all inquiries, please reach out via the details below or use the form to send a direct message.</p>
-              
-              <div className="detail-meta" style={{ marginTop: '3rem', border: 'none' }}>
-                 <div className="meta-item">
-                    <span className="meta-label">HEADQUARTERS</span>
-                    <span className="meta-value">345/43 Trần Hưng Đạo, District 1<br />Ho Chi Minh City, Vietnam</span>
-                 </div>
-                 <div className="meta-item">
-                    <span className="meta-label">EMAIL</span>
-                    <span className="meta-value">vuonga.dang@gmail.com</span>
-                 </div>
+          <p className="section-label">PRIVATE ENQUIRIES</p>
+          <h2 className="contact-section-title">
+            A doorway to <span>what&apos;s next</span>
+          </h2>
+          <p className="contact-lead">
+            Share your vision—we&apos;ll arrange the right conversation, whether you are exploring a first acquisition or scaling an institutional portfolio across the Kruler ecosystem.
+          </p>
+        </div>
+      </section>
+
+      <section className="contact-main">
+        <div className="container">
+          <div className="contact-grid">
+            <div className="contact-info-column">
+              <div className="contact-card">
+                <span className="contact-card-num">01</span>
+                <h3>Headquarters</h3>
+                <p>
+                  345/43 Trần Hưng Đạo, District 1
+                  <br />
+                  Ho Chi Minh City, Vietnam
+                </p>
+              </div>
+              <div className="contact-card">
+                <span className="contact-card-num">02</span>
+                <h3>Direct line</h3>
+                <p>
+                  <a href="mailto:vuonga.dang@gmail.com" className="contact-inline-link">
+                    vuonga.dang@gmail.com
+                  </a>
+                </p>
+                <p className="contact-card-note">We aim to reply within two business days.</p>
+              </div>
+              <div className="contact-card">
+                <span className="contact-card-num">03</span>
+                <h3>Studio hours</h3>
+                <p>
+                  Monday — Friday
+                  <br />
+                  09:00 — 18:00 (ICT)
+                </p>
+                <p className="contact-card-note">Site tours by appointment.</p>
               </div>
             </div>
 
-            <div className="story-media" id="query">
-              <div className="phi-card" style={{ height: 'auto', padding: '3rem', background: 'rgba(255,255,255,0.02)' }}>
-                <div className="footer-newsletter-title" style={{ marginBottom: '2rem' }}>Send a Query</div>
-                <form 
-                  className="footer-query-form" 
-                  action="https://formspree.io/f/mqakovge" 
+            <div className="contact-form-column" id="query">
+              <div className="contact-form-shell">
+                <div className="contact-form-header">
+                  <p className="section-label">ENQUIRY</p>
+                  <h3 className="contact-form-title">Tell us what you&apos;re building</h3>
+                  <p className="contact-form-sub">
+                    Fields marked with context help us route your note to the right director.
+                  </p>
+                </div>
+                <form
+                  className="contact-enquiry-form"
+                  action="https://formspree.io/f/mqakovge"
                   method="POST"
                 >
-                  <div className="footer-form-row">
-                    <input type="text" name="name" placeholder="Name" required />
-                    <input type="email" name="_replyto" placeholder="Email" required />
+                  <div className="contact-form-row">
+                    <label className="contact-field">
+                      <span>Name</span>
+                      <input type="text" name="name" placeholder="Full name" required autoComplete="name" />
+                    </label>
+                    <label className="contact-field">
+                      <span>Email</span>
+                      <input
+                        type="email"
+                        name="_replyto"
+                        placeholder="you@company.com"
+                        required
+                        autoComplete="email"
+                      />
+                    </label>
                   </div>
-                  <textarea name="message" placeholder="How can we help you?" rows="5" required style={{ background: 'rgba(0,0,0,0.2)' }}></textarea>
-                  <button type="submit" className="footer-submit-btn" style={{ marginTop: '1rem' }}>
-                    <span>Send Message</span>
+                  <div className="contact-form-row">
+                    <label className="contact-field">
+                      <span>Phone</span>
+                      <input type="tel" name="phone" placeholder="+84 · optional" autoComplete="tel" />
+                    </label>
+                    <label className="contact-field">
+                      <span>I&apos;m interested in</span>
+                      <select name="topic" defaultValue="" required>
+                        <option value="" disabled>
+                          Select a focus
+                        </option>
+                        <option value="investment">Investment &amp; acquisitions</option>
+                        <option value="partnership">Partnership &amp; joint venture</option>
+                        <option value="leasing">Leasing &amp; tenancy</option>
+                        <option value="hospitality">Hospitality &amp; operations</option>
+                        <option value="general">General enquiry</option>
+                      </select>
+                    </label>
+                  </div>
+                  <label className="contact-field contact-field-full">
+                    <span>Message</span>
+                    <textarea
+                      name="message"
+                      placeholder="Project scope, timeline, or questions—we read every detail."
+                      rows="6"
+                      required
+                    />
+                  </label>
+                  <button type="submit" className="contact-submit-btn">
+                    <span>Submit enquiry</span>
                     <ArrowIcon />
                   </button>
                 </form>
@@ -231,7 +320,33 @@ export function Contact() {
         </div>
       </section>
 
-      <MarqueeText text="CONNECT · COLLABORATE · GROW" speed={1.5} direction={1} color="rgba(255,255,255,0.05)" />
+      <section className="contact-map-section">
+        <div className="container">
+          <p className="section-label">LOCATION</p>
+          <h2 className="story-heading contact-map-heading">
+            District 1, <span>Ho Chi Minh City</span>
+          </h2>
+          <p className="contact-map-lead">
+            Our studio sits on Trần Hưng Đạo—minutes from the financial core and the cultural pulse of Saigon.
+          </p>
+          <div className="contact-map-frame">
+            <iframe
+              title="Kruler Holdings — 345/43 Trần Hưng Đạo, District 1, Ho Chi Minh City"
+              src="https://www.google.com/maps?q=345+Tran+Hung+Dao+District+1+Ho+Chi+Minh+City+Vietnam&z=16&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      <MarqueeText
+        text="CONNECT · COLLABORATE · GROW"
+        speed={1.6}
+        direction={-1}
+        color="rgba(186,160,119,0.12)"
+      />
     </div>
   );
 }
