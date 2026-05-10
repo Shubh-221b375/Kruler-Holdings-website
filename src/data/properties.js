@@ -86,8 +86,6 @@ export const developmentCards = [
     fullDescription: "This upcoming development is designed to cater to high-growth tech and creative firms. With a focus on natural light, outdoor terraces, and state-of-the-art HVAC systems, the L'mak Office development represents the next generation of healthy, productive workspaces.",
     images: [
       '/media/Lmak Office/building.jpg',
-      '/media/Lmak Office/1.png',
-      '/media/Lmak Office/2.png',
     ]
   },
   {
