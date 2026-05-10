@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
@@ -14,11 +16,19 @@ import ServiceList from './components/ServiceList';
 import ServiceDetail from './components/ServiceDetail';
 import { About, Services, Contact } from './components/InfoPages';
 
-function ScrollToTop() {
+gsap.registerPlugin(ScrollTrigger);
+
+function ScrollToTop({ lenisRef }) {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const lenis = lenisRef.current;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+    ScrollTrigger.refresh();
+  }, [pathname, lenisRef]);
   return null;
 }
 
@@ -39,19 +49,18 @@ function HomePage() {
   );
 }
 
-
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
 export default function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+
+    lenisRef.current = lenis;
+    lenis.scrollTo(0, { immediate: true });
 
     function raf(time) {
       lenis.raf(time);
@@ -74,6 +83,7 @@ export default function App() {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
@@ -81,7 +91,7 @@ export default function App() {
 
   return (
     <Router>
-      <ScrollToTop />
+      <ScrollToTop lenisRef={lenisRef} />
       <div className="loading-line" />
       <Header />
       <main>
