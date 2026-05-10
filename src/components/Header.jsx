@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLenisScroll } from '../LenisScrollContext';
 
 const ArrowIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -11,6 +12,7 @@ export { ArrowIcon };
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const scrollToTop = useLenisScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
@@ -22,7 +24,9 @@ export default function Header() {
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-inner">
         <div className="header-logo">
-          <Link to="/">KRULER</Link>
+          <Link to="/" onClick={() => scrollToTop?.()}>
+            KRULER
+          </Link>
         </div>
         <nav className="header-nav">
           <a href="/#properties">Portfolio</a>

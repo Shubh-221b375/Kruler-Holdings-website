@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { LenisScrollContext } from './LenisScrollContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
@@ -18,16 +19,20 @@ import { About, Services, Contact } from './components/InfoPages';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function scrollMainToTop(lenisRef) {
+  const lenis = lenisRef.current;
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: true });
+  } else {
+    window.scrollTo(0, 0);
+  }
+  ScrollTrigger.refresh();
+}
+
 function ScrollToTop({ lenisRef }) {
   const { pathname } = useLocation();
   useEffect(() => {
-    const lenis = lenisRef.current;
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-    ScrollTrigger.refresh();
+    scrollMainToTop(lenisRef);
   }, [pathname, lenisRef]);
   return null;
 }
@@ -51,6 +56,10 @@ function HomePage() {
 
 export default function App() {
   const lenisRef = useRef(null);
+
+  const scrollToTop = useCallback(() => {
+    scrollMainToTop(lenisRef);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -91,20 +100,22 @@ export default function App() {
 
   return (
     <Router>
-      <ScrollToTop lenisRef={lenisRef} />
-      <div className="loading-line" />
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/property/:id" element={<PropertyDetail />} />
-          <Route path="/services/:id" element={<ServiceDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-      <Footer />
+      <LenisScrollContext.Provider value={scrollToTop}>
+        <ScrollToTop lenisRef={lenisRef} />
+        <div className="loading-line" />
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/property/:id" element={<PropertyDetail />} />
+            <Route path="/services/:id" element={<ServiceDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </LenisScrollContext.Provider>
     </Router>
   );
 }
