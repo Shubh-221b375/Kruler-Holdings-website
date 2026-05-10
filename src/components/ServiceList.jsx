@@ -21,7 +21,7 @@ const services = [
     num: "03",
     title: "Manage",
     desc: "Full-service property management for commercial and residential assets. From tenant relations to maintenance, we protect and grow your investment around the clock.",
-    img: "/media/services/336293654.jpg"
+    img: "/media/74-76 Nam Ky Khoi Nghia/1.jpg"
   }
 ];
 
