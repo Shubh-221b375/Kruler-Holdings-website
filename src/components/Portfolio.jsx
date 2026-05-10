@@ -2,16 +2,19 @@ import { useNavigate } from 'react-router-dom';
 import ImageCarousel from './ImageCarousel';
 import StackedCarousel from './StackedCarousel';
 import { portfolioCards, developmentCards } from '../data/properties';
+import useReveal from '../hooks/useReveal';
 
 export default function Portfolio() {
   const navigate = useNavigate();
+  const headerRef1 = useReveal();
+  const headerRef2 = useReveal();
 
   return (
     <section className="portfolio-section" id="properties">
       <div className="container">
 
         {/* ── Section Header ── */}
-        <div className="section-header reveal-up">
+        <div className="section-header reveal-up" ref={headerRef1}>
           <p className="section-label">KRULER SPACE</p>
           <h2 className="section-title">Real Estate &amp;<br />Development Portfolio</h2>
           <p className="section-subtitle">Premium commercial properties across Ho Chi Minh City, home to world-class corporate tenants.</p>
@@ -21,11 +24,12 @@ export default function Portfolio() {
         <StackedCarousel items={portfolioCards} type="portfolio" />
 
         {/* ── On-Going Development ── */}
-        <div className="section-header reveal-up" style={{ marginTop: '9rem' }}>
+        <div className="section-header reveal-up" ref={headerRef2} style={{ marginTop: '9rem' }}>
           <p className="section-label">PIPELINE</p>
           <h2 className="section-title">On-Going Real Estate<br />Development</h2>
           <p className="section-subtitle">Two projects currently under construction.</p>
         </div>
+
 
         <div className="development-grid">
           {developmentCards.map((card, idx) => (

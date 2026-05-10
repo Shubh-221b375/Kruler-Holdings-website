@@ -28,6 +28,7 @@ export default function ImageCarousel({ images, interval = 3000, className = '' 
           src={img}
           alt={`media-${idx}`}
           className={`carousel-img ${idx === currentIndex ? 'active' : ''}`}
+          loading="lazy"
         />
       ))}
     </div>

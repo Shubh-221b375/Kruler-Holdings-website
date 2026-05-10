@@ -33,8 +33,8 @@ export const portfolioCards = [
     fullDescription: "A state-of-the-art office development currently in the final stages of completion. Designed with modern corporate needs in mind, the building features sustainable glass facades, flexible open-plan floor plates, and integrated smart-building technology. It is set to become the flagship headquarters for L'mak, setting a new benchmark for boutique corporate space in the district.",
     images: [
       '/media/Lmak Office/building.jpg',
-      '/media/Lmak Office/logo.jpg',
-      '/media/Lmak Office/lobby.jpg',
+      '/media/Lmak Office/1.png',
+      '/media/Lmak Office/2.png',
     ]
   },
   {
@@ -73,7 +73,6 @@ export const portfolioCards = [
     images: [
       '/media/74-76 Nam Ky Khoi Nghia/1.jpg',
       '/media/74-76 Nam Ky Khoi Nghia/2.jpg',
-      '/media/74-76 Nam Ky Khoi Nghia/3.jpg',
     ]
   }
 ];
@@ -87,6 +86,8 @@ export const developmentCards = [
     fullDescription: "This upcoming development is designed to cater to high-growth tech and creative firms. With a focus on natural light, outdoor terraces, and state-of-the-art HVAC systems, the L'mak Office development represents the next generation of healthy, productive workspaces.",
     images: [
       '/media/Lmak Office/building.jpg',
+      '/media/Lmak Office/1.png',
+      '/media/Lmak Office/2.png',
     ]
   },
   {
@@ -97,6 +98,10 @@ export const developmentCards = [
     fullDescription: "Currently in the final stages of design and development, this project will deliver a collection of high-end serviced villas. Each unit is integrated into the M Village digital ecosystem, providing residents with seamless access to Kruler's hospitality and wellness services.",
     images: [
       '/media/Mvillage/1.jpg',
+      '/media/Mvillage/2.jpg',
+      '/media/Mvillage/3.jpg',
+      '/media/Mvillage/4.webp',
+      '/media/Mvillage/5.webp',
     ]
   }
 ];

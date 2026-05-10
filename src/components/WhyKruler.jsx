@@ -1,6 +1,24 @@
 import React from 'react';
 
 export default function WhyKruler() {
+  const videoRef = React.useRef(null);
+
+  React.useEffect(() => {
+    // Only play video when it's near the viewport to save resources
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          videoRef.current?.play();
+        } else {
+          videoRef.current?.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    if (videoRef.current) observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="why-kruler-section">
       <div className="container">
@@ -13,7 +31,15 @@ export default function WhyKruler() {
         
         <div className="why-kruler-video">
           <div className="video-card">
-            <video autoPlay muted loop playsInline>
+            <video 
+              ref={videoRef}
+              muted 
+              loop 
+              playsInline 
+              preload="none"
+              style={{ background: '#000', opacity: 0, transition: 'opacity 1s' }}
+              onCanPlay={(e) => e.target.style.opacity = 1}
+            >
               <source src="/videos/why-us.mp4" type="video/mp4" />
             </video>
             <div className="video-glow" />
@@ -23,3 +49,4 @@ export default function WhyKruler() {
     </section>
   );
 }
+
