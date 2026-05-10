@@ -1,0 +1,16 @@
+---
+description: After implementing user-requested edits, commit and push to origin.
+alwaysApply: true
+---
+
+# Git: commit and push after changes
+
+When you finish code or asset changes the user asked for in this repository:
+
+1. Run `git status` and ensure only intended files are included.
+2. `git add` the relevant paths, then `git commit` with a short, accurate message (present tense, what changed).
+3. `git push` to `origin` on the current branch (usually `main`).
+
+Skip pushing only if the user explicitly says not to, or if there is no `origin` remote / no network / push fails after a retry—in that case say what blocked it.
+
+Do not leave completed work uncommitted when the user expects the remote repo updated.
