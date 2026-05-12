@@ -1458,13 +1458,17 @@ body {
   }
   /*
    * Cards are position:absolute + scale(); they paint above the container top. Extra offset + header
-   * margin keeps portfolio / ecosystem copy from sitting under the carousel (mobile).
+   * margin keeps copy from sitting under the carousel (mobile). Portfolio needs more gap than ecosystem.
    */
-  .portfolio-section .section-header,
+  .portfolio-section .section-header {
+    margin-bottom: clamp(5rem, 22vw, 9rem);
+  }
+  .portfolio-section .stacked-carousel-wrapper {
+    margin-top: clamp(7rem, 28vw, 14rem);
+  }
   .ecosystem-intro-section .section-header {
     margin-bottom: clamp(3rem, 10vw, 4.5rem);
   }
-  .portfolio-section .stacked-carousel-wrapper,
   .ecosystem-intro-section .stacked-carousel-wrapper {
     margin-top: clamp(3.5rem, 14vw, 7.5rem);
   }
