@@ -62,7 +62,7 @@ const sections = [
     brand: 'Hyperdot',
     images: [
       mediaUrl(KM.hyperdot, 'z7789220597283_cae43942dc5a2f31a6d120d7f19c954b.jpg'),
-      mediaUrl(KM.hyperdot, 'Screenshot 2026-05-11 102436.png'),
+      mediaUrl(KM.hyperdot, '1.jpg'),
     ],
   },
 ];

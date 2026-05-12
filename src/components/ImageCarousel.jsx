@@ -71,9 +71,26 @@ export default function ImageCarousel({
 
   const shouldAttachSrc = (idx) => {
     if (!readyToFetch) return false;
-    if (n <= 6) return true;
-    return ringDistance(idx, currentIndex, n) <= 1;
+    /** Load full list for typical galleries so the next slide is never waiting on src (avoids long blank gaps). */
+    if (n <= 18) return true;
+    return ringDistance(idx, currentIndex, n) <= 2;
   };
+
+  /** Warm the next/prev URLs so the crossfade isn’t waiting on the network at wrap / step. */
+  useEffect(() => {
+    if (!readyToFetch || n < 2) return undefined;
+    const urls = [
+      goodImages[(currentIndex + 1) % n],
+      goodImages[(currentIndex - 1 + n) % n],
+      goodImages[(currentIndex + 2) % n],
+    ].filter(Boolean);
+    for (const u of urls) {
+      const im = new Image();
+      im.referrerPolicy = 'no-referrer';
+      im.src = u;
+    }
+    return undefined;
+  }, [currentIndex, goodImages, n, readyToFetch]);
 
   useEffect(() => {
     if (!goodImages.length || !readyToFetch || goodImages.length <= 1) return undefined;

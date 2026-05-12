@@ -1,4 +1,4 @@
-import { brandItems } from '../data/brandPartners';
+import { brandItemsMarquee } from '../data/brandPartners';
 
 function BrandCell({ item }) {
   if (item.src) {
@@ -17,7 +17,7 @@ function BrandCell({ item }) {
 
 /** NETWORK heading + infinite single-row logo marquee (right → left), above EcosystemIntro. */
 export default function BrandLogosMarquee() {
-  const row = [...brandItems, ...brandItems];
+  const row = [...brandItemsMarquee, ...brandItemsMarquee];
 
   return (
     <section className="brand-logos-marquee-section" id="brands-partners" aria-label="Brands and partners">

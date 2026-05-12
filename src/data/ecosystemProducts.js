@@ -29,7 +29,7 @@ export const ecosystemProducts = [
       mediaUrl(KM.aceClubhouse, 'z7796172366441_016ff79b729727318c89f221ce48cfe3.jpg'),
       mediaUrl(KM.aceClubhouse, 'z7796173074689_5cf46ef040c987bc15ac380a8c1e692f.jpg'),
       mediaUrl(KM.aceClubhouse, 'z7796172017750_96cc1ef3573f5657571d746a857babdc.jpg'),
-      mediaUrl(KM.aceClubhouse, 'Screenshot 2026-05-11 095139.png'),
+      mediaUrl(KM.aceClubhouse, 'ACE CLUBHOUSE NEWEST Just LOGO beige.png'),
     ],
   },
   {
@@ -107,7 +107,7 @@ export const ecosystemProducts = [
       mediaUrl(KM.aceDienGiai, '556766124_122129936540951219_8441292616681957493_n.jpg'),
       mediaUrl(KM.aceDienGiai, '559269090_122132969342951219_4380205877606970263_n.jpg'),
       mediaUrl(KM.aceDienGiai, '584472686_122140961132951219_673617603428335029_n.jpg'),
-      mediaUrl(KM.aceDienGiai, 'Logo WH BG.png'),
+      mediaUrl(KM.aceDienGiai, 'logo-2.png'),
     ],
   },
   {
@@ -132,7 +132,7 @@ export const ecosystemProducts = [
     ],
     images: [
       mediaUrl(KM.hyperdot, 'z7789220597283_cae43942dc5a2f31a6d120d7f19c954b.jpg'),
-      mediaUrl(KM.hyperdot, 'Screenshot 2026-05-11 102436.png'),
+      mediaUrl(KM.hyperdot, '1.jpg'),
     ],
   },
 ];
