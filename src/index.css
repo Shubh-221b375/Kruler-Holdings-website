@@ -2709,7 +2709,12 @@ body {
 .video-card video {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
+  object-position: 54% 50%;
+  /* Crop baked-in top-left watermark (e.g. “ALL 4k”) without re-encoding the file */
+  clip-path: inset(7% 0 0 11%);
+  -webkit-clip-path: inset(7% 0 0 11%);
 }
 .video-glow {
   position: absolute;
