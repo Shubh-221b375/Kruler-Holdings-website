@@ -1,36 +1,21 @@
-import { ArrowIcon } from './Header';
+import { Link } from 'react-router-dom';
+import InquiryForm, { NewsletterSignup } from './InquiryForm';
+import { NAVBAR_LOGO_SRC } from '../data/navbarLogo';
+import { useLenisScroll } from '../LenisScrollContext';
 
 export default function Footer() {
+  const scrollToTop = useLenisScroll();
   return (
     <footer className="footer" id="contact">
       <div className="container">
         <div className="footer-top">
           <div>
             <div className="footer-newsletter-title">Subscribe to our Newsletter</div>
-            <form className="footer-newsletter-form" onSubmit={e => e.preventDefault()}>
-              <input type="email" placeholder="Enter email address" />
-              <button type="submit" aria-label="Subscribe">
-                <ArrowIcon />
-              </button>
-            </form>
+            <NewsletterSignup />
           </div>
           <div className="footer-query-col" id="query">
             <div className="footer-newsletter-title">Send a Query</div>
-            <form 
-              className="footer-query-form" 
-              action="https://formspree.io/f/mqakovge" 
-              method="POST"
-            >
-              <div className="footer-form-row">
-                <input type="text" name="name" placeholder="Name" required />
-                <input type="email" name="_replyto" placeholder="Email" required />
-              </div>
-              <textarea name="message" placeholder="Your Message" rows="2" required></textarea>
-              <button type="submit" className="footer-submit-btn">
-                <span>Send Message</span>
-                <ArrowIcon />
-              </button>
-            </form>
+            <InquiryForm variant="footer" />
           </div>
         </div>
 
@@ -48,14 +33,32 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-logo">KRULER</div>
+        <div className="footer-brand">
+          <Link to="/" className="footer-brand-link" aria-label="Kruler Holdings — Home" onClick={() => scrollToTop?.()}>
+            <img
+              src={NAVBAR_LOGO_SRC}
+              alt=""
+              className="footer-brand-img"
+              width={360}
+              height={100}
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (el.dataset.fallbackApplied) return;
+                el.dataset.fallbackApplied = '1';
+                el.src = '/logo.svg';
+              }}
+            />
+            <span className="footer-brand-wordmark">Kruler Holdings</span>
+          </Link>
+        </div>
 
         <div className="footer-bottom">
           <div className="footer-sublinks">
             <a href="#">Terms</a>
             <a href="#">Privacy Policy</a>
           </div>
-          <div>Kruler Holdings</div>
           <div>Copyright © 2026</div>
         </div>
       </div>

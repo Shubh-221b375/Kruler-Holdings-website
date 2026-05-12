@@ -124,11 +124,11 @@ export default function Hero() {
     <section className="hero" ref={rootRef} style={{ visibility: 'hidden' }}>
       <div className="hero-sticky" ref={stickyRef}>
         <div className="hero-back">
-          <img ref={backRef} src="/images/back.jpg" alt="" />
+          <img ref={backRef} src="/images/back.jpg" alt="" fetchPriority="high" decoding="async" />
         </div>
 
         <div className="hero-house" ref={houseRef}>
-          <img ref={houseImgRef} src="/images/house.png" alt="Property" />
+          <img ref={houseImgRef} src="/images/house.png" alt="Property" fetchPriority="high" decoding="async" />
         </div>
 
         <div className="hero-clouds" ref={cloudsRef}>

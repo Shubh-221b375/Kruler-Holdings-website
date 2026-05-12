@@ -1,7 +1,7 @@
 import React from 'react';
 import MarqueeText from './MarqueeText';
-import ImageCarousel from './ImageCarousel';
-import { ArrowIcon } from './Header';
+import InquiryForm from './InquiryForm';
+import { mediaUrl, KM } from '../data/mediaPaths';
 
 const PageHero = ({ title, subtitle, label }) => (
   <section className="property-detail-hero">
@@ -45,7 +45,7 @@ export function About() {
             </div>
             <div className="story-media">
                <div className="story-img-wrapper">
-                 <img src="/media/EL WHERE HOTEL LOGO/ELW_8250.jpg" alt="Legacy" />
+                 <img src={mediaUrl(KM.elWhereHotel, 'ELW_8250.jpg')} alt="Legacy" />
                </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export function About() {
       <section className="about-philosophy">
         <div className="container">
            <div className="philosophy-grid">
-             <div className="phi-card" style={{ backgroundImage: 'url("/media/74-76 Nam Ky Khoi Nghia/1.jpg")' }}>
+             <div className="phi-card" style={{ backgroundImage: `url("${mediaUrl(KM.baia7476, 'baia-saigon-74-nam-ky-khoi-nghia-quan-1-5.webp')}")` }}>
                 <div className="phi-card-overlay" />
                 <div className="phi-card-content">
                   <span className="phi-num">01</span>
@@ -64,7 +64,7 @@ export function About() {
                   <p>We anticipate urban shifts and invest in locations with long-term cultural and economic significance.</p>
                 </div>
              </div>
-             <div className="phi-card" style={{ backgroundImage: 'url("/media/EL WHERE HOTEL LOGO/DUC_6452.jpg")' }}>
+             <div className="phi-card" style={{ backgroundImage: `url("${mediaUrl(KM.elWhereHotel, 'DUC_6452.jpg')}")` }}>
                 <div className="phi-card-overlay" />
                 <div className="phi-card-content">
                   <span className="phi-num">02</span>
@@ -72,7 +72,7 @@ export function About() {
                   <p>Minimalist, functional, and timeless. We collaborate with world-class architects to create iconic spaces.</p>
                 </div>
              </div>
-             <div className="phi-card" style={{ backgroundImage: 'url("/media/Lmak Office/building.jpg")' }}>
+             <div className="phi-card" style={{ backgroundImage: `url("${mediaUrl(KM.lmak132, 'b724183f528f404711e1391fa43a36c4.jpg')}")` }}>
                 <div className="phi-card-overlay" />
                 <div className="phi-card-content">
                   <span className="phi-num">03</span>
@@ -90,12 +90,12 @@ export function About() {
       <section className="about-showcase">
         <div className="container">
            <div className="showcase-grid">
-              <img src="/media/EL WHERE CAFE/Copy of MUF_0021 (1).jpg" alt="" className="parallax-img" />
+              <img src={mediaUrl(KM.elWhereCafe, 'Copy of MUF_0021.jpg')} alt="" className="parallax-img" />
               <div className="showcase-text">
                  <h2>Curating <br/>Lifestyles</h2>
                  <p>Beyond bricks and mortar, Kruler Holdings creates the fabric of daily life—where you wake up, where you work, and where you thrive.</p>
               </div>
-              <img src="/media/Mvillage/2.jpg" alt="" className="parallax-img" />
+              <img src={mediaUrl(KM.mVillage232, '336293697.jpg')} alt="" className="parallax-img" />
            </div>
         </div>
       </section>
@@ -110,7 +110,7 @@ export function Services() {
       {/* ── Services Hero ── */}
       <section className="about-hero" style={{ height: '70vh' }}>
         <div className="about-hero-video">
-          <img src="/media/Lmak Office/building.jpg" alt="Services" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={mediaUrl(KM.lmak132, 'b724183f528f404711e1391fa43a36c4.jpg')} alt="Services" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           <div className="video-overlay" style={{ background: 'rgba(0,0,0,0.7)' }} />
         </div>
         <div className="container about-hero-content">
@@ -128,7 +128,7 @@ export function Services() {
           <div className="story-grid">
             <div className="story-media">
                <div className="story-img-wrapper" style={{ aspectRatio: '16/9' }}>
-                 <img src="/media/232-15 Vo Thi Sau/1.jpg" alt="Development" />
+                 <img src={mediaUrl(KM.mVillage232, '336293654.jpg')} alt="Development" />
                </div>
             </div>
             <div className="story-content">
@@ -141,7 +141,7 @@ export function Services() {
           <div className="story-grid" style={{ marginTop: '10rem', direction: 'rtl' }}>
             <div className="story-media" style={{ direction: 'ltr' }}>
                <div className="story-img-wrapper" style={{ aspectRatio: '16/9' }}>
-                 <img src="/media/Lmak Office/lobby.jpg" alt="Asset Management" />
+                 <img src={mediaUrl(KM.intermec27, 'kruler-space.jpg')} alt="Asset Management" />
                </div>
             </div>
             <div className="story-content" style={{ direction: 'ltr' }}>
@@ -154,7 +154,7 @@ export function Services() {
           <div className="story-grid" style={{ marginTop: '10rem' }}>
             <div className="story-media">
                <div className="story-img-wrapper" style={{ aspectRatio: '16/9' }}>
-                 <img src="/media/EL WHERE HOTEL LOGO/DUC_6443.jpg" alt="Hospitality" />
+                 <img src={mediaUrl(KM.elWhereHotel, 'ELW_8378-HDR.jpg')} alt="Hospitality" />
                </div>
             </div>
             <div className="story-content">
@@ -179,7 +179,7 @@ export function Contact() {
       <section className="about-hero contact-hero">
         <div className="about-hero-video">
           <img
-            src="/media/Lmak Office/lobby.jpg"
+            src={mediaUrl(KM.elWhereHotel, 'ELW_8250.jpg')}
             alt=""
             className="contact-hero-img"
           />
@@ -233,8 +233,13 @@ export function Contact() {
                 <span className="contact-card-num">02</span>
                 <h3>Direct line</h3>
                 <p>
-                  <a href="mailto:vuonga.dang@gmail.com" className="contact-inline-link">
-                    vuonga.dang@gmail.com
+                  <a href="mailto:quandang@kruler.vn" className="contact-inline-link">
+                    quandang@kruler.vn
+                  </a>
+                </p>
+                <p>
+                  <a href="mailto:vuongdang@kruler.vn" className="contact-inline-link">
+                    vuongdang@kruler.vn
                   </a>
                 </p>
                 <p className="contact-card-note">We aim to reply within two business days.</p>
@@ -254,66 +259,14 @@ export function Contact() {
             <div className="contact-form-column" id="query">
               <div className="contact-form-shell">
                 <div className="contact-form-header">
+                  <img src="/logo.svg" alt="" className="contact-form-logo" width={140} height={52} decoding="async" />
                   <p className="section-label">ENQUIRY</p>
                   <h3 className="contact-form-title">Tell us what you&apos;re building</h3>
                   <p className="contact-form-sub">
                     Fields marked with context help us route your note to the right director.
                   </p>
                 </div>
-                <form
-                  className="contact-enquiry-form"
-                  action="https://formspree.io/f/mqakovge"
-                  method="POST"
-                >
-                  <div className="contact-form-row">
-                    <label className="contact-field">
-                      <span>Name</span>
-                      <input type="text" name="name" placeholder="Full name" required autoComplete="name" />
-                    </label>
-                    <label className="contact-field">
-                      <span>Email</span>
-                      <input
-                        type="email"
-                        name="_replyto"
-                        placeholder="you@company.com"
-                        required
-                        autoComplete="email"
-                      />
-                    </label>
-                  </div>
-                  <div className="contact-form-row">
-                    <label className="contact-field">
-                      <span>Phone</span>
-                      <input type="tel" name="phone" placeholder="+84 · optional" autoComplete="tel" />
-                    </label>
-                    <label className="contact-field">
-                      <span>I&apos;m interested in</span>
-                      <select name="topic" defaultValue="" required>
-                        <option value="" disabled>
-                          Select a focus
-                        </option>
-                        <option value="investment">Investment &amp; acquisitions</option>
-                        <option value="partnership">Partnership &amp; joint venture</option>
-                        <option value="leasing">Leasing &amp; tenancy</option>
-                        <option value="hospitality">Hospitality &amp; operations</option>
-                        <option value="general">General enquiry</option>
-                      </select>
-                    </label>
-                  </div>
-                  <label className="contact-field contact-field-full">
-                    <span>Message</span>
-                    <textarea
-                      name="message"
-                      placeholder="Project scope, timeline, or questions—we read every detail."
-                      rows="6"
-                      required
-                    />
-                  </label>
-                  <button type="submit" className="contact-submit-btn">
-                    <span>Submit enquiry</span>
-                    <ArrowIcon />
-                  </button>
-                </form>
+                <InquiryForm variant="contact" />
               </div>
             </div>
           </div>

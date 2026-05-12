@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLenisScroll } from '../LenisScrollContext';
+import { NAVBAR_LOGO_SRC } from '../data/navbarLogo';
 
 const ArrowIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -24,8 +25,32 @@ export default function Header() {
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-inner">
         <div className="header-logo">
-          <Link to="/" onClick={() => scrollToTop?.()}>
-            KRULER
+          <Link
+            to="/"
+            onClick={() => scrollToTop?.()}
+            className="header-logo-link"
+            aria-label="Kruler Holdings — Home"
+          >
+            <span className="header-logo-graphic-wrap" aria-hidden="true">
+              <img
+                src={NAVBAR_LOGO_SRC}
+                alt=""
+                className="header-logo-img"
+                width={360}
+                height={100}
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const el = e.currentTarget;
+                  if (el.dataset.fallbackApplied) return;
+                  el.dataset.fallbackApplied = '1';
+                  el.src = '/logo.svg';
+                }}
+              />
+            </span>
+            <span className="header-logo-wordmark" aria-hidden="true">
+              KRULER
+            </span>
           </Link>
         </div>
         <nav className="header-nav">

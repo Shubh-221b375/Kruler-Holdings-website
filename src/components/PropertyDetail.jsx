@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { portfolioCards, developmentCards } from '../data/properties';
 import StackedCarousel from './StackedCarousel';
 import MarqueeText from './MarqueeText';
+import ImageLightbox from './ImageLightbox';
 
 export default function PropertyDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const property = [...portfolioCards, ...developmentCards].find(p => p.id === id);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setLightboxIndex(null);
   }, [id]);
 
   if (!property) {
@@ -24,18 +26,37 @@ export default function PropertyDetail() {
   }
 
   // Prepare gallery items for StackedCarousel
-  const galleryItems = property.images.map((img, idx) => ({
-    title: `${property.title} - View ${idx + 1}`,
-    description: property.title,
-    images: [img]
-  }));
+  const galleryItems = property.images
+    .map((img, idx) => ({
+      id: `${property.id}-view-${idx}`,
+      galleryIndex: idx,
+      title: `${property.title} - View ${idx + 1}`,
+      description: property.title,
+      images: [img],
+    }))
+    .filter((item) => item.images[0] && String(item.images[0]).trim());
 
   return (
     <div className="property-detail-page">
       {/* ── Cinematic Hero ── */}
       <section className="property-hero">
         <div className="property-hero-bg">
-          <img src={property.images[0]} alt={property.title} />
+          <button
+            type="button"
+            className="property-hero-bg-expand"
+            aria-label="View full image"
+            onClick={() => setLightboxIndex(0)}
+          >
+            {property.images?.[0] ? (
+              <img
+                src={property.images[0]}
+                alt={property.title}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            ) : null}
+          </button>
           <div className="hero-overlay" />
         </div>
         
@@ -65,7 +86,9 @@ export default function PropertyDetail() {
                <div className="info-meta-card">
                   <div className="meta-row">
                     <span className="meta-label">STATUS</span>
-                    <span className="meta-value">{property.location ? 'Under Construction' : 'Operational'}</span>
+                    <span className="meta-value">
+                      {property.status ?? (property.location ? 'Under Construction' : 'Operational')}
+                    </span>
                   </div>
                   <div className="meta-row">
                     <span className="meta-label">MANAGEMENT</span>
@@ -83,7 +106,7 @@ export default function PropertyDetail() {
 
       <MarqueeText text="VISUAL PORTFOLIO" speed={2} direction={-1} color="rgba(186,160,119,0.1)" />
 
-      {/* ── Gallery Section ── */}
+      {galleryItems.length > 0 && (
       <section className="detail-gallery-section">
         <div className="container">
           <div className="section-header center">
@@ -92,10 +115,19 @@ export default function PropertyDetail() {
           </div>
           
           <div className="gallery-container">
-            <StackedCarousel items={galleryItems} type="gallery" />
+            <StackedCarousel items={galleryItems} type="gallery" onGalleryImageClick={(i) => setLightboxIndex(i)} />
           </div>
         </div>
       </section>
+      )}
+      {lightboxIndex !== null && property.images.length > 0 && (
+        <ImageLightbox
+          images={property.images}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={property.images.length > 1 ? setLightboxIndex : undefined}
+        />
+      )}
     </div>
   );
 }

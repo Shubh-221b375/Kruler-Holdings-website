@@ -4,8 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync-media": "node scripts/sync-kruler-media.mjs",
+    "generate:property-images": "node scripts/generate-property-images.mjs",
+    "s3:media-instructions": "node scripts/print-s3-media-sync.mjs",
+    "predev": "node scripts/sync-kruler-media.mjs && node scripts/generate-property-images.mjs",
+    "prebuild": "node scripts/sync-kruler-media.mjs && node scripts/generate-property-images.mjs",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/rm-dist-media-if-cdn.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

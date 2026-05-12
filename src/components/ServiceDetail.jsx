@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MarqueeText from './MarqueeText';
+import { mediaUrl, KM } from '../data/mediaPaths';
 
 const serviceDetails = {
   develop: {
@@ -8,7 +8,7 @@ const serviceDetails = {
     subtitle: "Landmark Properties, Defined by Design.",
     desc: "From strategic land acquisition to world-class architectural selection, Kruler's development arm is built on a foundation of local expertise and global standards.",
     fullDesc: "We don't just build buildings; we build legacies. Our development process is a rigorous journey of site selection, feasibility analysis, and partnership with the world's most innovative architects. Every project in our portfolio is a testament to our commitment to District 1 and District 3's urban fabric.",
-    img: "/media/services/ELW_8623-HDR.jpg",
+    img: mediaUrl(KM.elWhereHotel, 'ELW_8623-HDR.jpg'),
     whyUs: [
       "Strategic Site Selection",
       "World-Class Design Partnerships",
@@ -21,7 +21,7 @@ const serviceDetails = {
     subtitle: "Transparent Growth, Shared Success.",
     desc: "Kruler provides structured investment opportunities with a focus on risk mitigation and high-yield returns in the premium commercial sector.",
     fullDesc: "Your capital deserves an expert foundation. We offer institutional-grade reporting, proven performance metrics, and a hands-on approach to asset management. Our investors are partners in our vision to reshape the skyline of Ho Chi Minh City.",
-    img: "/media/services/invest_bg.jpg",
+    img: mediaUrl(KM.krulerHq, 'kruler Timeline (2).jpg'),
     whyUs: [
       "Institutional Grade Reporting",
       "Proven Yield Performance",
@@ -34,7 +34,7 @@ const serviceDetails = {
     subtitle: "Full-Service Asset Stewardship.",
     desc: "Kruler's management division ensures that every property operates at peak efficiency while maintaining the highest standards of tenant relations.",
     fullDesc: "A property's value is sustained through meticulous care. From high-end residential villas to corporate office towers, we provide 24/7 maintenance, proactive tenant leasing, and optimized operational strategies that protect and grow your investment.",
-    img: "/media/services/336293654.jpg",
+    img: mediaUrl(KM.baia7476, 'baia-saigon-74-nam-ky-khoi-nghia-quan-1-5.webp'),
     whyUs: [
       "24/7 Operational Support",
       "Proactive Tenant Relations",
@@ -66,10 +66,6 @@ export default function ServiceDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const service = serviceDetails[id];
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
 
   if (!service) return <div className="container" style={{padding:'10rem'}}>Service not found.</div>;
 

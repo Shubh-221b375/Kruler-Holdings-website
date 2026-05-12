@@ -39,7 +39,7 @@ export default function MarqueeText({ text, speed = 1, direction = 1, color = 'r
 
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      tl.kill();
     };
   }, [direction, speed]);
 

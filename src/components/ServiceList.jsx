@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { mediaUrl, KM } from '../data/mediaPaths';
 
 const services = [
   {
@@ -7,21 +8,21 @@ const services = [
     num: "01",
     title: "Develop",
     desc: "Strategic land acquisition, architectural selection, and world-class design partnerships — delivering landmark properties across District 1 and District 3.",
-    img: "/media/services/ELW_8623-HDR.jpg"
+    img: mediaUrl(KM.elWhereHotel, 'ELW_8623-HDR.jpg')
   },
   {
     id: "invest",
     num: "02",
     title: "Invest",
     desc: "Structured investment opportunities with transparent reporting, proven returns, and hands-on project management. Your capital, our expertise, shared success.",
-    img: "/media/services/invest_bg.jpg"
+    img: mediaUrl(KM.krulerHq, 'kruler Timeline (2).jpg')
   },
   {
     id: "manage",
     num: "03",
     title: "Manage",
     desc: "Full-service property management for commercial and residential assets. From tenant relations to maintenance, we protect and grow your investment around the clock.",
-    img: "/media/74-76 Nam Ky Khoi Nghia/1.jpg"
+    img: mediaUrl(KM.baia7476, 'baia-saigon-74-nam-ky-khoi-nghia-quan-1-5.webp')
   }
 ];
 

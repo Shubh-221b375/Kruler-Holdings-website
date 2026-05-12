@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/media/:path*",
+      "destination": "https://kruler-holdings-website.s3.amazonaws.com/media/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
