@@ -1113,8 +1113,14 @@ body {
   text-align: center; overflow: hidden; margin-bottom: 8rem;
 }
 .sports-hero-bg { position: absolute; inset: 0; z-index: 1; }
-.sports-hero-bg .image-carousel {
+.sports-hero-bg .sports-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .sports-hero-bg::after {
   content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6);

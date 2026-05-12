@@ -67,10 +67,8 @@ const sections = [
   },
 ];
 
-const heroImages = [
-  mediaUrl(KM.aceClubhouse, 'Screenshot 2026-05-11 095139.png'),
-  mediaUrl(KM.aceClubhouse, 'z7796164837280_b93171a722482b62af89ec18139f730f.jpg'),
-];
+/** Hero uses this venue photo only — not the green “Ace Clubhouse” title graphic (Screenshot …png). */
+const HERO_BG_SRC = mediaUrl(KM.aceClubhouse, 'z7796164837280_b93171a722482b62af89ec18139f730f.jpg');
 
 export default function SportsWellness() {
   const sectionRef = useRef(null);
@@ -118,8 +116,16 @@ export default function SportsWellness() {
   return (
     <section className="sports-wellness-section" id="sports-wellness" ref={sectionRef}>
       <div className="sports-hero">
-        <div className="sports-hero-bg">
-          <ImageCarousel images={heroImages} interval={5000} />
+        <div className="sports-hero-bg" aria-hidden>
+          <img
+            className="sports-hero-bg-img"
+            src={HERO_BG_SRC}
+            alt=""
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            referrerPolicy="no-referrer"
+          />
         </div>
         <div className="sports-hero-content reveal-up">
           <p className="sports-hero-label">KRULER SPORTS &amp; WELLNESS</p>
