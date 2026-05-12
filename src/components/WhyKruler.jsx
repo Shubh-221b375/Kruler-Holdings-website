@@ -40,7 +40,7 @@ export default function WhyKruler() {
               style={{ background: '#000', opacity: 0, transition: 'opacity 1s' }}
               onCanPlay={(e) => e.target.style.opacity = 1}
             >
-              <source src="/videos/why-kruler-hcmc.mp4" type="video/mp4" />
+              <source src="https://kruler-holdings-website.s3.ap-southeast-2.amazonaws.com/media/why-kruler-hcmc.MP4" type="video/mp4" />
             </video>
             <div className="video-glow" />
           </div>
