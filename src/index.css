@@ -1421,11 +1421,40 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* Stacked carousel: ~30% shorter than previous mobile size so cards don’t cover section headers */
   .stacked-carousel-container {
-    height: 460px;
+    height: calc(460px * 0.7);
   }
-  .stacked-card {
+  .stacked-carousel-wrapper .stacked-card {
     width: min(264px, 86vw);
+  }
+  .stacked-carousel-wrapper .portfolio-card-media,
+  .stacked-carousel-wrapper .development-card-media,
+  .stacked-carousel-wrapper .node-card-media {
+    height: calc(240px * 0.7);
+  }
+  .stacked-carousel-wrapper .portfolio-card-content,
+  .stacked-carousel-wrapper .development-card-content,
+  .stacked-carousel-wrapper .node-card-content {
+    padding: 1.15rem 1.25rem;
+  }
+  .stacked-carousel-wrapper .portfolio-card-content h3,
+  .stacked-carousel-wrapper .development-card-content h3,
+  .stacked-carousel-wrapper .node-card-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  .stacked-carousel-wrapper .card-desc {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 0.3rem;
+  }
+  .stacked-carousel-wrapper .carousel-nav {
+    margin-top: 1.75rem;
+  }
+  /* Gallery-only stacked cards (property detail): shrink below global .gallery-card-media !important */
+  .stacked-carousel-wrapper .gallery-card-media {
+    height: calc(260px * 0.7) !important;
   }
 }
 
