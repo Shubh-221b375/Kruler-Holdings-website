@@ -1456,6 +1456,18 @@ body {
   .stacked-carousel-wrapper .gallery-card-media {
     height: calc(260px * 0.7) !important;
   }
+  /*
+   * Cards are position:absolute + scale(); they paint above the container top. Extra offset + header
+   * margin keeps portfolio / ecosystem copy from sitting under the carousel (mobile).
+   */
+  .portfolio-section .section-header,
+  .ecosystem-intro-section .section-header {
+    margin-bottom: clamp(3rem, 10vw, 4.5rem);
+  }
+  .portfolio-section .stacked-carousel-wrapper,
+  .ecosystem-intro-section .stacked-carousel-wrapper {
+    margin-top: clamp(3.5rem, 14vw, 7.5rem);
+  }
 }
 
 /* ===== PROPERTY DETAIL PAGE ===== */
