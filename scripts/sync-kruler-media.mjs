@@ -17,7 +17,16 @@ if (mediaCdnBase) {
   process.exit(0);
 }
 
+const isCi = process.env.VERCEL === '1' || process.env.CI === 'true';
+
 if (!fs.existsSync(srcRoot)) {
+  if (isCi) {
+    console.warn(
+      "[sync-kruler-media] Skipped on CI/Vercel: Kruler's Media is not in the repo (expected). " +
+        'Set VITE_MEDIA_BASE_URL in Vercel → Environment Variables so the site loads images from S3/CDN.'
+    );
+    process.exit(0);
+  }
   console.error("[sync-kruler-media] Missing source folder:", srcRoot);
   process.exit(1);
 }

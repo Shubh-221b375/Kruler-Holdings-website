@@ -18,11 +18,32 @@ const mediaRoot = path.join(root, 'public', 'media');
 const outFile = path.join(root, 'src', 'data', 'generatedPropertyImages.js');
 
 const mediaCdnBase = String(process.env.VITE_MEDIA_BASE_URL || '').trim();
+const isCi = process.env.VERCEL === '1' || process.env.CI === 'true';
+
 if (mediaCdnBase && !fs.existsSync(mediaRoot)) {
   console.log(
     '[generate-property-images] Skipped: VITE_MEDIA_BASE_URL set and public/media is missing — keeping src/data/generatedPropertyImages.js as-is (paths resolve via CDN).'
   );
   process.exit(0);
+}
+
+if (!fs.existsSync(mediaRoot)) {
+  if (isCi && fs.existsSync(outFile)) {
+    console.log(
+      '[generate-property-images] Skipped: no public/media on CI — keeping committed src/data/generatedPropertyImages.js.'
+    );
+    process.exit(0);
+  }
+  if (!isCi) {
+    console.error(
+      '[generate-property-images] Missing public/media. Run `npm run sync-media` locally, or set VITE_MEDIA_BASE_URL on Vercel for CDN-only builds.'
+    );
+    process.exit(1);
+  }
+  console.error(
+    '[generate-property-images] Missing public/media and generatedPropertyImages.js — add VITE_MEDIA_BASE_URL on Vercel or commit src/data/generatedPropertyImages.js.'
+  );
+  process.exit(1);
 }
 
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|svg)$/i;
