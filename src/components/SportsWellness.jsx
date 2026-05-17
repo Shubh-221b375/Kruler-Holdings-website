@@ -68,7 +68,7 @@ const sections = [
 ];
 
 /** Hero uses this venue photo only — not the green “Ace Clubhouse” title graphic (Screenshot …png). */
-const HERO_BG_SRC = mediaUrl(KM.aceClubhouse, 'z7796164837280_b93171a722482b62af89ec18139f730f.jpg');
+const HERO_BG_SRC = mediaUrl(KM.aceClubhouse, 'z7796164837280_b93171a722482b62af89ec18139f730f.jpg', { width: 1280 });
 
 export default function SportsWellness() {
   const sectionRef = useRef(null);

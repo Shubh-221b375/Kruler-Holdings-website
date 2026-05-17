@@ -110,7 +110,7 @@ export function Services() {
       {/* ── Services Hero ── */}
       <section className="about-hero" style={{ height: '70vh' }}>
         <div className="about-hero-video">
-          <img src={mediaUrl(KM.lmak132, 'b724183f528f404711e1391fa43a36c4.jpg')} alt="Services" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={mediaUrl(KM.lmak132, 'b724183f528f404711e1391fa43a36c4.jpg', { width: 1280 })} alt="Services" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="eager" fetchPriority="high" decoding="async" />
           <div className="video-overlay" style={{ background: 'rgba(0,0,0,0.7)' }} />
         </div>
         <div className="container about-hero-content">
@@ -179,7 +179,7 @@ export function Contact() {
       <section className="about-hero contact-hero">
         <div className="about-hero-video">
           <img
-            src={mediaUrl(KM.elWhereHotel, 'ELW_8250.jpg')}
+            src={mediaUrl(KM.elWhereHotel, 'ELW_8250.jpg', { width: 1280 })}
             alt=""
             className="contact-hero-img"
           />

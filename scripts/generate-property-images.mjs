@@ -47,6 +47,8 @@ if (!fs.existsSync(mediaRoot)) {
 }
 
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif|gif|svg)$/i;
+/** Max images written per property (keeps carousels fast). */
+const MAX_IMAGES_PER_PROPERTY = 8;
 
 function mediaUrl(folderName, fileName) {
   return `/media/${encodeURIComponent(folderName)}/${encodeURIComponent(fileName)}`;
@@ -57,7 +59,7 @@ function listImagesInFolder(folderName) {
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];
   return fs
     .readdirSync(dir)
-    .filter((f) => IMAGE_EXT.test(f) && !f.startsWith('.'))
+    .filter((f) => IMAGE_EXT.test(f) && !/\.svg$/i.test(f) && !f.startsWith('.'))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
     .map((f) => mediaUrl(folderName, f));
 }
@@ -119,8 +121,9 @@ for (const entry of targets) {
     const urls = [];
     for (const folder of folders) {
       urls.push(...listImagesInFolder(folder));
+      if (urls.length >= MAX_IMAGES_PER_PROPERTY) break;
     }
-    generated[id] = urls;
+    generated[id] = urls.slice(0, MAX_IMAGES_PER_PROPERTY);
     continue;
   }
   let urls = [];
@@ -131,7 +134,7 @@ for (const entry of targets) {
       break;
     }
   }
-  generated[id] = urls;
+  generated[id] = urls.slice(0, MAX_IMAGES_PER_PROPERTY);
 }
 
 generated['kruler-village-long-phuoc'] = collectKrulerVillageImages(mediaRoot, KM.krulerVillage874);

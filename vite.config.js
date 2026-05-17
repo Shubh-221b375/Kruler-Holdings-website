@@ -1,16 +1,16 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
+const DEFAULT_S3_MEDIA_ORIGIN = 'https://kruler-holdings-website.s3.amazonaws.com';
+
 function mediaOriginHintsPlugin(mediaBase) {
   return {
     name: 'media-origin-hints',
     transformIndexHtml(html) {
       const lines = [];
-      if (mediaBase) {
-        const href = mediaBase.replace(/\/+$/, '');
-        lines.push(`<link rel="dns-prefetch" href="${href}" />`);
-        lines.push(`<link rel="preconnect" href="${href}" crossorigin />`);
-      }
+      const href = (mediaBase || DEFAULT_S3_MEDIA_ORIGIN).replace(/\/+$/, '');
+      lines.push(`<link rel="dns-prefetch" href="${href}" />`);
+      lines.push(`<link rel="preconnect" href="${href}" crossorigin />`);
       lines.push('<link rel="preload" href="/images/back.jpg" as="image" />');
       lines.push('<link rel="preload" href="/images/house.png" as="image" />');
       const block = lines.join('\n    ');

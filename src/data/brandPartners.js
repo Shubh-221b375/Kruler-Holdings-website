@@ -1,4 +1,5 @@
 import { mediaUrl, KM } from './mediaPaths';
+import intermecLogo from '../../images.png';
 
 /**
  * NETWORK marquee — `fallbackSrcs` tried in order if the primary `src` fails (404, CORS, or empty decode).
@@ -20,7 +21,7 @@ export const brandItems = [
     fallbackSrcs: [mediaUrl(KM.hyperdot, '1.jpg')],
   },
   { src: mediaUrl(KM.baia7476, 'baia-logo.jpg'), alt: 'Baia Saigon' },
-  { src: mediaUrl(KM.intermec27, 'logo-png-01.png'), alt: 'InterMec' },
+  { src: intermecLogo, alt: 'InterMec' },
   { src: mediaUrl(KM.fpt311, 'y-nghia-logo-fpt-lan-3.jpg'), alt: 'FPT' },
   { src: '/logo-mvillage-w.png', alt: 'M Village' },
 ];

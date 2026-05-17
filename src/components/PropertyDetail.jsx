@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { portfolioCards, developmentCards } from '../data/properties';
+import { displayMediaUrl } from '../data/mediaPaths';
 import StackedCarousel from './StackedCarousel';
 import MarqueeText from './MarqueeText';
 import ImageLightbox from './ImageLightbox';
@@ -49,7 +50,7 @@ export default function PropertyDetail() {
           >
             {property.images?.[0] ? (
               <img
-                src={property.images[0]}
+                src={displayMediaUrl(property.images[0], { width: 1280 })}
                 alt={property.title}
                 loading="eager"
                 fetchPriority="high"

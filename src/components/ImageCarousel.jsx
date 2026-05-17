@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useRef, useLayoutEffect } from 'react';
+import { displayMediaUrl, resolveMediaUrl } from '../data/mediaPaths';
 
-/** Ring distance for “load current ± N slides” when a gallery is large (limits parallel megabyte downloads). */
+/** Ring distance for “load current ± N slides” (limits parallel megabyte downloads). */
 function ringDistance(idx, current, n) {
   if (n <= 1) return 0;
   const forward = (idx - current + n) % n;
@@ -30,7 +31,7 @@ export default function ImageCarousel({
     const syncNearViewport = () => {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight || 800;
-      if (r.top < vh + 720 && r.bottom > -720) setInView(true);
+      if (r.top < vh + 280 && r.bottom > -280) setInView(true);
     };
     syncNearViewport();
   }, []);
@@ -45,7 +46,7 @@ export default function ImageCarousel({
       ([e]) => {
         if (e.isIntersecting) setInView(true);
       },
-      { root: null, rootMargin: '600px 0px 800px 0px', threshold: 0 }
+      { root: null, rootMargin: '200px 0px 280px 0px', threshold: 0 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -71,24 +72,18 @@ export default function ImageCarousel({
 
   const shouldAttachSrc = (idx) => {
     if (!readyToFetch) return false;
-    /** Load full list for typical galleries so the next slide is never waiting on src (avoids long blank gaps). */
-    if (n <= 18) return true;
-    return ringDistance(idx, currentIndex, n) <= 2;
+    if (n <= 1) return true;
+    return ringDistance(idx, currentIndex, n) <= 1;
   };
 
-  /** Warm the next/prev URLs so the crossfade isn’t waiting on the network at wrap / step. */
+  /** Warm only the next slide so crossfade is ready without a download burst. */
   useEffect(() => {
     if (!readyToFetch || n < 2) return undefined;
-    const urls = [
-      goodImages[(currentIndex + 1) % n],
-      goodImages[(currentIndex - 1 + n) % n],
-      goodImages[(currentIndex + 2) % n],
-    ].filter(Boolean);
-    for (const u of urls) {
-      const im = new Image();
-      im.referrerPolicy = 'no-referrer';
-      im.src = u;
-    }
+    const nextUrl = goodImages[(currentIndex + 1) % n];
+    if (!nextUrl) return undefined;
+    const im = new Image();
+    im.referrerPolicy = 'no-referrer';
+    im.src = displayMediaUrl(nextUrl, { width: 960 });
     return undefined;
   }, [currentIndex, goodImages, n, readyToFetch]);
 
@@ -111,21 +106,31 @@ export default function ImageCarousel({
       {goodImages.map((img, idx) => {
         const attached = shouldAttachSrc(idx);
         const isActive = idx === currentIndex;
+        const src = attached ? displayMediaUrl(img, { width: isActive ? 1280 : 960 }) : undefined;
         return (
           <img
             key={`${img}-${idx}`}
-            src={attached ? img : undefined}
+            src={src}
             alt=""
             className={`carousel-img ${isActive ? 'active' : ''}`}
-            sizes="(max-width: 768px) 100vw, min(960px, 90vw)"
+            sizes="(max-width: 768px) 100vw, min(720px, 88vw)"
             loading={attached && isActive ? 'eager' : 'lazy'}
             fetchPriority={attached && isActive ? 'high' : attached ? 'low' : undefined}
             decoding="async"
             referrerPolicy="no-referrer"
             role={enableExpand && isActive ? 'button' : undefined}
             tabIndex={enableExpand && isActive ? 0 : undefined}
-            onError={() => {
+            onError={(e) => {
               if (!attached) return;
+              const el = e.currentTarget;
+              if (el.dataset.fallback !== '1') {
+                const original = resolveMediaUrl(img);
+                if (original && el.src !== original) {
+                  el.dataset.fallback = '1';
+                  el.src = original;
+                  return;
+                }
+              }
               setBadUrls((prev) => {
                 const next = new Set(prev);
                 next.add(img);

@@ -91,9 +91,7 @@ export const generatedPropertyImages = {
   ],
   "lmak-office-pipeline": [
     "/media/Kruler%20Space%20%C2%B7%20132A%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Ch%C3%ADnh%20%E2%80%94%20future%20corporate%20tenant%20L'mak/b724183f528f404711e1391fa43a36c4.jpg",
-    "/media/Kruler%20Space%20%C2%B7%20132A%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Ch%C3%ADnh%20%E2%80%94%20future%20corporate%20tenant%20L'mak/l_mak_logo.jpg",
-    "/media/Kruler%20Space%20%C2%B7%20132A%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Ch%C3%ADnh%20%E2%80%94%20future%20corporate%20tenant%20L'mak/logo.svg",
-    "/media/Kruler%20Space%20%C2%B7%20132A%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Ch%C3%ADnh%20%E2%80%94%20future%20corporate%20tenant%20L'mak/logo2.svg"
+    "/media/Kruler%20Space%20%C2%B7%20132A%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Ch%C3%ADnh%20%E2%80%94%20future%20corporate%20tenant%20L'mak/l_mak_logo.jpg"
   ],
   "kruler-village-long-phuoc": [
     "/media/Kruler%20Village%20%C2%B7%20874%20Long%20Ph%C6%B0%E1%BB%9Bc%20%E2%80%94%20Kruler-owned%2C%20operated%2C%20and%20managed%20residential%20villa%20compound%20(bi%E1%BB%87t%20th%E1%BB%B1%20compound%20NEWLY%20ADDED/2e13a141f3c9e7d7bae743b7e556624e.jpg",
