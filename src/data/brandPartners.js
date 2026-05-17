@@ -22,7 +22,7 @@ export const brandItems = [
   { src: mediaUrl(KM.baia7476, 'baia-logo.jpg'), alt: 'Baia Saigon' },
   { src: mediaUrl(KM.intermec27, 'logo-png-01.png'), alt: 'InterMec' },
   { src: mediaUrl(KM.fpt311, 'y-nghia-logo-fpt-lan-3.jpg'), alt: 'FPT' },
-  { src: mediaUrl(KM.mVillage232, 'logo-mvillage-b.png'), alt: 'M Village' },
+  { src: '/logo-mvillage-w.png', alt: 'M Village' },
 ];
 
 /** Drop entries whose URL looks like a white-box logo comp or a screen grab (defensive if list is edited later). */
