@@ -6,6 +6,10 @@
   "scripts": {
     "sync-media": "node scripts/sync-kruler-media.mjs",
     "generate:property-images": "node scripts/generate-property-images.mjs",
+    "generate:media-variants": "node scripts/generate-media-variants.mjs",
+    "media:variants:deploy": "node scripts/generate-media-variants-streaming.mjs",
+    "media:variants:deploy:full": "node scripts/media-variants-pipeline.mjs",
+    "cleanup:media": "node scripts/cleanup-local-media.mjs",
     "s3:media-instructions": "node scripts/print-s3-media-sync.mjs",
     "predev": "node scripts/sync-kruler-media.mjs && node scripts/generate-property-images.mjs",
     "prebuild": "node scripts/sync-kruler-media.mjs && node scripts/generate-property-images.mjs",

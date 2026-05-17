@@ -15,7 +15,14 @@ function galleryDedupeKey(resolvedUrl) {
 }
 
 /** Cap merged CDN URLs per property — fewer parallel downloads; raise if you need longer galleries. */
-const MAX_GALLERY_URLS = 14;
+const MAX_GALLERY_URLS = 6;
+
+function isGalleryPhoto(url) {
+  const key = galleryDedupeKey(url);
+  if (!key) return false;
+  if (/\.svg$/i.test(key)) return false;
+  return true;
+}
 
 function imagesForProperty(propertyId, fallbackImages) {
   const gen = generatedPropertyImages[propertyId];
@@ -25,6 +32,7 @@ function imagesForProperty(propertyId, fallbackImages) {
   const merged = [];
   const seenPath = new Set();
   for (const u of [...fbList, ...genList]) {
+    if (!isGalleryPhoto(u)) continue;
     const r = resolveMediaUrl(u);
     if (!r) continue;
     const key = galleryDedupeKey(r);
@@ -75,7 +83,6 @@ const cardFptImages = [
 const lmakPipelineImages = [
   mediaUrl(KM.lmak132, 'b724183f528f404711e1391fa43a36c4.jpg'),
   mediaUrl(KM.lmak132, 'l_mak_logo.jpg'),
-  mediaUrl(KM.lmak132, 'logo2.svg'),
 ];
 
 const krulerVillageFallbackShort = ['1.jpg', '1.png', '2.jpg', '2.png', '3.jpg', '4.webp', '5.webp'].map((f) =>
