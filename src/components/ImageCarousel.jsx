@@ -19,6 +19,8 @@ export default function ImageCarousel({
   enableExpand = false,
   onExpandClick,
   fetchEnabled = true,
+  /** Target width for WebP variants / display sizing (carousel cards use ~720). */
+  variantWidth = 960,
 }) {
   const rootRef = useRef(null);
   const [inView, setInView] = useState(false);
@@ -83,9 +85,9 @@ export default function ImageCarousel({
     if (!nextUrl) return undefined;
     const im = new Image();
     im.referrerPolicy = 'no-referrer';
-    im.src = displayMediaUrl(nextUrl, { width: 960 });
+    im.src = displayMediaUrl(nextUrl, { width: variantWidth });
     return undefined;
-  }, [currentIndex, goodImages, n, readyToFetch]);
+  }, [currentIndex, goodImages, n, readyToFetch, variantWidth]);
 
   useEffect(() => {
     if (!goodImages.length || !readyToFetch || goodImages.length <= 1) return undefined;
@@ -106,7 +108,9 @@ export default function ImageCarousel({
       {goodImages.map((img, idx) => {
         const attached = shouldAttachSrc(idx);
         const isActive = idx === currentIndex;
-        const src = attached ? displayMediaUrl(img, { width: isActive ? 1280 : 960 }) : undefined;
+        const src = attached
+          ? displayMediaUrl(img, { width: isActive ? Math.min(variantWidth + 160, 1280) : variantWidth })
+          : undefined;
         return (
           <img
             key={`${img}-${idx}`}

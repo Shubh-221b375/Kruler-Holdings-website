@@ -28,10 +28,10 @@ function imagesForProperty(propertyId, fallbackImages) {
   const gen = generatedPropertyImages[propertyId];
   const genList = Array.isArray(gen) ? gen : [];
   const fbList = Array.isArray(fallbackImages) ? fallbackImages : [];
-  /** Prefer fallback URLs first, then generated scan. Dedupe by pathname so the same object is not requested twice. */
   const merged = [];
   const seenPath = new Set();
-  for (const u of [...fbList, ...genList]) {
+  /** Prefer CDN scan (generated) over hand-maintained fallbacks so stale paths do not fill the gallery cap. */
+  for (const u of [...genList, ...fbList]) {
     if (!isGalleryPhoto(u)) continue;
     const r = resolveMediaUrl(u);
     if (!r) continue;
@@ -85,12 +85,7 @@ const lmakPipelineImages = [
   mediaUrl(KM.lmak132, 'l_mak_logo.jpg'),
 ];
 
-const krulerVillageFallbackShort = ['1.jpg', '1.png', '2.jpg', '2.png', '3.jpg', '4.webp', '5.webp'].map((f) =>
-  mediaUrl('Kruler Village', f)
-);
-
 const krulerVillageImages = [
-  ...krulerVillageFallbackShort,
   mediaUrl(KM.krulerVillage874, '2e13a141f3c9e7d7bae743b7e556624e.jpg'),
   mediaUrl(KM.krulerVillage874, '96b5dd705ff7f2e6624a3567dc4fbf6a.jpg'),
   mediaUrl(KM.krulerVillage874, 'e1cd1198a4f48b8ccd8c14ca8561d871.jpg'),
