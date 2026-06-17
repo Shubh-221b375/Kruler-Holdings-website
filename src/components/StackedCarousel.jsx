@@ -109,7 +109,7 @@ export default function StackedCarousel({
                 <ImageCarousel
                   images={item.images}
                   interval={3500 + idx * 200}
-                  fetchEnabled={idx === activeIndex}
+                  fetchEnabled={ringAbs(idx) <= 2}
                   enableExpand={type === 'gallery'}
                   onExpandClick={
                     type === 'gallery' ? () => onGalleryImageClick?.(item.galleryIndex ?? idx) : undefined
